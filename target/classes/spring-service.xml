@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--1.扫描service包-->
+    <context:component-scan base-package="org.blue.service"/>
+    <!--2.将我们所有的业务类，注入到spring，可以配置也可以用注解-->
+    <bean id="booksServiceImpl" class="org.blue.service.impl.BooksServiceImpl">
+        <property name="booksMapper" ref="booksMapper"/>
+    </bean>
+    <!--3.声明事务配置-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--4.aop事务支持-->
+
+</beans>
